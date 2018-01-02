@@ -1,0 +1,39 @@
+
+
+create-react-app leitura
+
+npm install --save react-redux redux-thunk redux-promise redux-multi redux-devtools-extension redux-logger react-router react-router-dom react-router-redux
+
+npm install --save bootstrap@4.0.0-beta.2
+npm install --save reactstrap@next
+npm install --save redux-form
+npm install --save uuid
+npm install --save react-icons
+npm install --save react-fontawesome
+npm install --save react-loading
+npm install --save sort-by
+npm install --save moment
+npm install --save prop-types
+npm install --save sweetalert
+
+npm install --save-dev enzyme enzyme-adapter-react-16 fetch-mock redux-mock-store
+
+https://github.com/bphillips201/readable
+https://github.com/damiepsz3/Readable
+https://github.com/ddavignon/Readable
+
+
+https://github.com/ReactTraining/react-router/tree/master/packages/react-router-redux/examples
+
+
+Airbnb React/JSX Style Guide
+https://github.com/airbnb/javascript/tree/master/react
+
+
+-- Dynamic form name
+https://github.com/erikras/redux-form/issues/603
+
+https://github.com/albertoivo/reactnd-project-readable-starter/tree/master/frontend/src/components
+https://redux.js.org/docs/recipes/WritingTests.html
+https://medium.com/@visualskyrim/test-your-redux-container-with-enzyme-a0e10c0574ec
+https://github.com/udacity/live-codings-react-nanodegree/blob/master/react-fundamentals/2-iniciando-com-testes-em-react-solution/solution/src/App.test.js
