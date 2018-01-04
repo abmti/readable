@@ -40,4 +40,5 @@ https://github.com/udacity/live-codings-react-nanodegree/blob/master/react-funda
 
 
 - Reselect (Selectors)
-(https://github.com/reactjs/reselect)
+https://github.com/reactjs/reselect
+https://redux.js.org/docs/recipes/ComputingDerivedData.html
