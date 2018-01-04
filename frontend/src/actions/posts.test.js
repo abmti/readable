@@ -91,7 +91,7 @@ describe('Post Actions', () => {
     it('creates POST_UPDATED when fetching post has been done', () => {
 
         const postUpdated = { ...posts1, body: "UPDATED"}
-        const expectedActions = [{ type: POST_UPDATED, post: postUpdated }, {"payload": {"args": ["/posts/abcd123456"], "method": "push"}, "type": "@@router/CALL_HISTORY_METHOD"}]
+        const expectedActions = [{ type: POST_UPDATED, post: postUpdated }, {"payload": {"args": ["/react/abcd123456"], "method": "push"}, "type": "@@router/CALL_HISTORY_METHOD"}]
         const store = mockStore({ posts: [] })
 
         fetchMock.once('end:/posts/abcd123456', {body: postUpdated, headers })
