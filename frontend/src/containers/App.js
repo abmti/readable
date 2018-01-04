@@ -9,6 +9,7 @@ import About from './About'
 import PostForm from './PostForm'
 import PostShow from './PostShow'
 import CategoryShow from './CategoryShow'
+import NotFound from "./NotFound";
 
 class App extends Component {
 
@@ -55,12 +56,12 @@ class App extends Component {
                 <Container className='content'>
                     <Switch>
                         <Route exact path="/" component={Home}/>
-                        <Route exact path="/posts/new" component={PostForm}/>
-                        <Route path="/posts/:id/edit" component={PostForm}/>
-                        <Route path="/posts/:id" component={PostShow}/>
-                        <Route path="/categories/:category" component={CategoryShow}/>
                         <Route path="/about" component={About}/>
-                        <Route render={() => <p className="error">Not found.</p>} />
+                        <Route path="/404" component={NotFound}/>
+                        <Route exact path="/posts/new" component={PostForm}/>
+                        <Route path="/:category/:id/edit" component={PostForm}/>
+                        <Route path="/:category/:id" component={PostShow}/>
+                        <Route path="/:category" component={CategoryShow}/>
                     </Switch>
                 </Container>
 

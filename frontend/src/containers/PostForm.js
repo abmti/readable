@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Field, reduxForm } from 'redux-form';
-import { FormGroup, Card, CardHeader, CardBody, CardFooter, Button } from 'reactstrap';
+import { Field, reduxForm, getFormSyncErrors } from 'redux-form';
+import { FormGroup, Card, CardHeader, CardBody, CardFooter, Button, Alert } from 'reactstrap';
 import swal from 'sweetalert'
 
 import { edit, create, update } from '../actions/posts'
@@ -35,16 +35,17 @@ class PostForm extends Component {
             this.props.create(values).then(({post}) => {
                 swal({icon: "success", text: "Post created successfully!"})
                     .then(() => {
-                        this.props.history.push(`/posts/${post.id}`);
+                        this.props.history.push(`/${post.category}/${post.id}`);
                     });
             });
         }
     }
 
     render() {
-
         //const { match, location, handleSubmit, pristine, reset, submitting } = this.props
-        const { handleSubmit, pristine, reset, submitting } = this.props
+        const { handleSubmit, pristine, reset, submitting, errors, submitFailed } = this.props
+        console.debug("PROPS")
+        console.debug(this.props)
 
         const form = (
             <Card>
@@ -53,6 +54,13 @@ class PostForm extends Component {
                         Post Form
                     </CardHeader>
                     <CardBody>
+
+                        {
+                            (errors != undefined && submitFailed) && (Object.keys(errors).map((key) => (
+                                <Alert color="danger">{errors[key]}</Alert>
+                            )))
+                        }
+
                         <FormGroup>
                             <label>Title</label>
                             <Field
@@ -119,7 +127,24 @@ class PostForm extends Component {
 
 }
 
-PostForm = reduxForm({ form: 'postForm' })(PostForm);
-const mapStateToProps = state => ({post: state.post.post, categories: state.category.list})
+const validate = values => {
+    const errors = {}
+    if (!values.title) {
+        errors.title = 'Title required'
+    }
+    if (!values.body) {
+        errors.body = 'Body required'
+    }
+    if (!values.author) {
+        errors.author = 'Author required'
+    }
+    if (!values.category) {
+        errors.category = 'Category required'
+    }
+    return errors
+}
+
+PostForm = reduxForm({ form: 'postForm', validate })(PostForm)
+const mapStateToProps = state => ({post: state.post.post, categories: state.category.list, errors: getFormSyncErrors('postForm')(state)})
 const mapDispatchToProps = { edit, create, update, searchCategories }
 export default connect(mapStateToProps, mapDispatchToProps)(PostForm)

@@ -21,7 +21,7 @@ class CommentForm extends Component {
     }
 
     render() {
-        const { handleSubmit, pristine, reset, submitting } = this.props
+        const { handleSubmit, pristine, reset, submitting, invalid } = this.props
         return (
 
             <form onSubmit={handleSubmit(this.submitForm)}>
@@ -49,7 +49,7 @@ class CommentForm extends Component {
                 </div>
 
                 <div className={this.props.modal ? 'modal-footer' : 'card-footer'}>
-                    <button type="submit" disabled={pristine || submitting} className="btn btn-primary btn-sm">
+                    <button type="submit" disabled={pristine || submitting || invalid} className="btn btn-primary btn-sm">
                         Submit
                     </button>
                     {' '}
@@ -63,11 +63,22 @@ class CommentForm extends Component {
 
 }
 
+const validate = values => {
+    const errors = {}
+    if (!values.author) {
+        errors.author = 'Author required'
+    }
+    if (!values.body) {
+        errors.body = 'Body required'
+    }
+    return errors
+}
+
 const getNameFormComment = (props) => {
     return 'commmentForm' + (props.modal ? 'Modal' : '')
 }
 
-const mapStateToPropsForm = (state, props) => ({form: getNameFormComment(props)})
+const mapStateToPropsForm = (state, props) => ({form: getNameFormComment(props), validate})
 CommentForm = connect(mapStateToPropsForm)(reduxForm()(CommentForm));
 
 const mapDispatchToProps = { create, update }

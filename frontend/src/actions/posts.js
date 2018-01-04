@@ -2,7 +2,9 @@
 import { push } from 'react-router-redux'
 import { initialize } from 'redux-form'
 
-import { POSTS_SEARCHED, POST_LOADED, POST_CREATED, POST_UPDATED, POST_DELETED, POST_VOTED } from '../utils/ActionTypes'
+import {
+    POSTS_SEARCHED, POST_LOADED, POST_FAILED, POST_CREATED, POST_UPDATED, POST_DELETED, POST_VOTED,
+} from '../utils/ActionTypes'
 import * as PostsApi from '../utils/PostsAPI';
 
 export const search = () => {
@@ -21,7 +23,14 @@ export const searchPostsByCategory = (category) => {
 
 export const load = (id) => {
     return (dispatch) => {
-        return PostsApi.get(id).then((post) => dispatch({type: POST_LOADED, post}))
+        return PostsApi.get(id).then((post) => {
+            if(post != undefined && post.id != undefined) {
+                dispatch({type: POST_LOADED, post})
+            } else {
+                dispatch({type: POST_FAILED})
+                throw new Error('Record not found');
+            }
+        })
     }
 }
 
@@ -51,7 +60,7 @@ export const edit = (id) => {
 export const update = (values) => {
     return (dispatch) => {
         return PostsApi.update(values)
-            .then((post) => dispatch([updated(post), push(`/posts/${post.id}`)]))
+            .then((post) => dispatch([updated(post), push(`/${post.category}/${post.id}`)]))
     }
 }
 

@@ -15,9 +15,14 @@ class PostShow extends Component {
     }
 
     componentDidMount() {
-        this.props.load(this.props.match.params.id).then(() => {
-            this.setState({loaded: true})
-        })
+        this.props.load(this.props.match.params.id)
+            .then(() => {
+                this.setState({loaded: true})
+            })
+            .catch((err) => {
+                this.props.history.push(`/404`);
+            })
+
     }
 
     render() {

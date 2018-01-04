@@ -23,7 +23,7 @@ class CategoriaList extends Component {
             const list = this.props.list || []
             return list.map((c, idx) => (
                 <div key={idx}>
-                    <Link to={`/categories/${c.path}`} replace={true}>
+                    <Link to={`/${c.path}`} replace={true}>
                         <FaTag className="mr-2" />
                         {c.name}
                     </Link>

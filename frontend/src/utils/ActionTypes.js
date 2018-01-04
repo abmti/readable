@@ -15,6 +15,7 @@ export const CLOSE_MODAL_COMMENT = 'CLOSE_MODAL_COMMENT'
 
 export const POSTS_SEARCHED = 'POST_SEARCHED'
 export const POST_LOADED  = 'POST_LOADED'
+export const POST_FAILED  = 'POST_FAILED'
 export const POST_CREATED = 'POST_CREATED'
 export const POST_UPDATED = 'POST_UPDATED'
 export const POST_DELETED = 'POST_DELETED'

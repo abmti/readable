@@ -41,10 +41,10 @@ class PostCard extends Component {
             <Card className='mb-15'>
                 <CardBody>
                     <CardTitle>
-                        <Link to={`/posts/${post.id}`}>{post.title}</Link>
+                        <Link to={`/${post.category}/${post.id}`}>{post.title}</Link>
 
                         <span className="font-14 ml-3">
-                            <Link to={`/posts/${post.id}/edit`}><FaPencil /></Link>
+                            <Link to={`/${post.category}/${post.id}/edit`}><FaPencil /></Link>
                             {' '}
                             <a href="javascript:void(0)" onClick={this.clickRemove}><FaTrash /></a>
                         </span>
