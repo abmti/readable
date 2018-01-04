@@ -2,7 +2,8 @@ import {
     POSTS_SEARCHED,
     POST_LOADED,
     POST_VOTED,
-    POST_DELETED
+    POST_DELETED,
+    UPDATE_SORT_ATTRIBUTE
 } from '../utils/ActionTypes'
 
 const INITIAL_STATE = {
@@ -16,7 +17,8 @@ const INITIAL_STATE = {
             category: 'react',
             voteScore: 0,
         },
-    list: []
+    list: [],
+    sortAttribute: '-voteScore'
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -35,6 +37,8 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, post: action.post, list: newList }
         case POST_DELETED:
             return { ...state, list: state.list.filter((p) => p.id !== action.post.id) }
+        case UPDATE_SORT_ATTRIBUTE:
+            return { ...state, sortAttribute: action.sortAttribute }
         default:
             return state
     }

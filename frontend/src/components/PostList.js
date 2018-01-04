@@ -5,13 +5,12 @@ import { Col, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Alert 
 import sortBy from 'sort-by'
 
 import PostCard from './PostCard'
-import { search, searchPostsByCategory } from '../actions/posts';
+import { search, searchPostsByCategory, updateSortAttribute } from '../actions/posts';
 
 class PostList extends Component {
 
     state = {
         searched: false,
-        sortAttribute: '-voteScore',
         dropdownSortOpen: false
     }
 
@@ -30,7 +29,7 @@ class PostList extends Component {
     }
 
     clickBtnSort = (attribute) => {
-        this.setState({sortAttribute: attribute})
+        this.props.updateSortAttribute(attribute)
     }
 
     toggleSort = () => {
@@ -42,8 +41,7 @@ class PostList extends Component {
 
     render() {
         const renderList = () => {
-            const list = this.props.list.sort(sortBy(this.state.sortAttribute)) || []
-            return list.map((post, idx) => (
+            return this.props.list.map((post, idx) => (
                 <PostCard key={idx} post={post} showBtnReadMore={true} />
             ))
         }
@@ -89,9 +87,10 @@ class PostList extends Component {
 
 }
 
-const mapStateToProps = state => ({list: state.post.list})
-const mapDispatchToProps = { search, searchPostsByCategory }
+const getPostsSorted = (list, sortAttribute) => {
+    return list.sort(sortBy(sortAttribute)) || []
+}
+
+const mapStateToProps = state => ({list: getPostsSorted(state.post.list, state.post.sortAttribute)})
+const mapDispatchToProps = { search, searchPostsByCategory, updateSortAttribute }
 export default connect(mapStateToProps, mapDispatchToProps)(PostList)
-
-
-// TODO - implementar reselect (https://github.com/reactjs/reselect)

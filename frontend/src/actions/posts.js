@@ -3,7 +3,7 @@ import { push } from 'react-router-redux'
 import { initialize } from 'redux-form'
 
 import {
-    POSTS_SEARCHED, POST_LOADED, POST_FAILED, POST_CREATED, POST_UPDATED, POST_DELETED, POST_VOTED,
+    POSTS_SEARCHED, POST_LOADED, POST_FAILED, POST_CREATED, POST_UPDATED, POST_DELETED, POST_VOTED, UPDATE_SORT_ATTRIBUTE
 } from '../utils/ActionTypes'
 import * as PostsApi from '../utils/PostsAPI';
 
@@ -95,5 +95,12 @@ export const vote = (post, vote) => {
     return (dispatch) => {
         return PostsApi.vote(post, vote)
             .then((post) => dispatch({type: POST_VOTED, post}))
+    }
+}
+
+export const updateSortAttribute = (sortAttribute) => {
+    return {
+        type: UPDATE_SORT_ATTRIBUTE,
+        sortAttribute
     }
 }

@@ -20,5 +20,7 @@ export const POST_CREATED = 'POST_CREATED'
 export const POST_UPDATED = 'POST_UPDATED'
 export const POST_DELETED = 'POST_DELETED'
 export const POST_VOTED = 'POST_VOTED'
+export const UPDATE_SORT_ATTRIBUTE = 'UPDATE_SORT_ATTRIBUTE'
+
 
 

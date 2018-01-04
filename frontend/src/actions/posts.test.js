@@ -4,7 +4,7 @@ import multi from 'redux-multi'
 import fetchMock from 'fetch-mock'
 
 import { api, headers} from '../utils/Api'
-import {POSTS_SEARCHED, POST_CREATED, POST_LOADED, POST_UPDATED, POST_DELETED, POST_VOTED} from '../utils/ActionTypes'
+import {POSTS_SEARCHED, POST_CREATED, POST_LOADED, POST_UPDATED, POST_DELETED, POST_VOTED, UPDATE_SORT_ATTRIBUTE} from '../utils/ActionTypes'
 import * as actions from './posts'
 
 const middlewares = [multi, thunk]
@@ -127,5 +127,13 @@ describe('Post Actions', () => {
         })
     })
 
+
+    it('creates UPDATE_SORT_ATTRIBUTE', () => {
+
+        const sortAttribute = '-voteScore'
+        const expectedActions = { type: UPDATE_SORT_ATTRIBUTE, sortAttribute }
+
+        expect(actions.updateSortAttribute(sortAttribute)).toEqual(expectedActions)
+    })
 
 })

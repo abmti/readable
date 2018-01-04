@@ -37,3 +37,7 @@ https://github.com/albertoivo/reactnd-project-readable-starter/tree/master/front
 https://redux.js.org/docs/recipes/WritingTests.html
 https://medium.com/@visualskyrim/test-your-redux-container-with-enzyme-a0e10c0574ec
 https://github.com/udacity/live-codings-react-nanodegree/blob/master/react-fundamentals/2-iniciando-com-testes-em-react-solution/solution/src/App.test.js
+
+
+- Reselect (Selectors)
+(https://github.com/reactjs/reselect)

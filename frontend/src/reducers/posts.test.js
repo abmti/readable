@@ -3,7 +3,8 @@ import {
     POSTS_SEARCHED,
     POST_LOADED,
     POST_VOTED,
-    POST_DELETED
+    POST_DELETED,
+    UPDATE_SORT_ATTRIBUTE
 } from '../utils/ActionTypes'
 
 const timestampFake = 1514396283160
@@ -19,7 +20,8 @@ const INITIAL_STATE = {
             category: 'react',
             voteScore: 0,
         },
-    list: []
+    list: [],
+    sortAttribute: '-voteScore'
 }
 
 const posts1 = {
@@ -72,12 +74,13 @@ describe('Posts reducer', () => {
     it('should handle POST_VOTED', () => {
         const state = { ...INITIAL_STATE, list: [posts1] }
         const postVoted = {...posts1, voteScore: 1}
+        const expectedState = { ...INITIAL_STATE, post: postVoted, list: [postVoted] }
         expect(
             reducer(state, {
                 type: POST_VOTED,
                 post: postVoted
             })
-        ).toEqual({post: postVoted, list: [postVoted]})
+        ).toEqual(expectedState)
     })
 
     it('should handle POST_DELETED', () => {
@@ -90,6 +93,17 @@ describe('Posts reducer', () => {
         ).toEqual({list: []})
     })
 
+    it('should handle UPDATE_SORT_ATTRIBUTE', () => {
+        const sortAttribute = 'voteScore'
+        const expectedState = { ...INITIAL_STATE, sortAttribute }
+        expect(
+            reducer(INITIAL_STATE, {
+                type: UPDATE_SORT_ATTRIBUTE
 
+                ,
+                sortAttribute
+            })
+        ).toEqual(expectedState)
+    })
 
 })
